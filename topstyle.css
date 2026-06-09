@@ -1,0 +1,112 @@
+#content{
+  z-index: 999 !important;
+}
+.back-to-top {
+/* Basic styling */
+background-color: rgba(255,255,255, 0.5);
+border: 2px solid currentColor;
+border-radius: 0.5em;
+display: inline-block;
+padding: 0.1em;
+
+/* Position at the bottom right of the viyewport */
+position: fixed;
+inset: auto 1rem 1rem auto;
+}
+
+.back-to-top:is(:link, :visited) {
+/* Instead of the link color, use the text color */
+color: currentColor;
+text-decoration: none;
+}
+
+.back-to-top span {
+/* Hide text accessibly */
+clip: rect(0 0 0 0);
+clip-path: inset(50%);
+height: 1px;
+overflow: hidden;
+position: absolute;
+white-space: nowrap;
+width: 1px;
+}
+
+.back-to-top {
+--yellow: rgba(255,65,150, 0.5);
+--white: rgba(65,216,255,0.4);
+background-image: linear-gradient(var(--yellow), var(--white));
+}
+
+.back-to-top {
+background-image: linear-gradient(var(--yellow) 0% 50%, var(--white) 50% 100%);
+}
+
+.back-to-top {
+background-image: linear-gradient(var(--yellow) 0% var(--progress), var(--white) var(--progress) 100%);
+}
+
+@keyframes progress {
+0% {
+--progress: 0%;
+}
+
+100% {
+--progress: 100%;
+}
+}
+
+.back-to-top {
+--yellow: rgba(255,65,150, 0.5);
+--white: rgba(65,216,255,0.4);
+
+background-image: linear-gradient(var(--yellow) 0% var(--progress), var(--white) var(--progress) 100%);
+/* ... */
+animation: progress linear;
+animation-timeline: scroll();
+}
+
+@property --progress {
+syntax: '<length-percentage>';
+inherits: false;
+initial-value: 0%;
+}
+
+
+@property --angle {
+syntax: '<angle>';
+inherits: true;
+initial-value: -90deg;
+}
+
+@keyframes progress {
+0% {
+--progress: 0%;
+--angle: 0deg;
+}
+
+8% {
+--angle: -90deg;
+}
+
+100% {
+--progress: 100%;
+}
+}
+
+.back-to-top svg {
+/* … */
+transform: rotate(var(--angle));
+}
+
+@supports not (animation-timeline: scroll()) {
+.back-to-top {
+background: var(--yellow);
+}
+}
+
+
+@media(prefers-reduced-motion: no-preference) {
+html {
+scroll-behavior: smooth;
+}
+}
